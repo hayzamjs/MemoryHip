@@ -1,5 +1,5 @@
 # MemoryHip
-----
+
 The most scientific way to increase your brain power, FOR REAL.
 
 To view a demo visit this [link](http://memoryhip.ml/).
